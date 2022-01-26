@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>CSS Light Bulb Animation Effects</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+		<section>
+			<div class="container">
+				<div class="settings">
+					<h2 class="quote__content">Bạn không có cảm hứng với môn Toán?</h2>
+					<h2 class="quote__content">Bạn cảm thấy môn Toán rất khó?</h2>
+					<h2 class="quote__content">Bạn không hiểu giáo án của thầy/cô?</h2>
+					<h2 class="quote__content">Bạn không thể áp dụng những gì đã học?</h2>
+					<h2 class="quote__content">Bạn cảm thấy ngột ngạt với môn Toán?</h2>
+					<h1 class="quote__header" id="quote__header">Hãy để tôi giúp bạn!</h1>
+					<div class="toggle" id="toggle"></div>
+				</div>
+				<div class="bulb__container">
+					<div class="wire"></div>
+					<div class="bulb">
+						<span></span>
+						<span></span>
+					</div>
+				</div>
+			</div>
+			<div class="light" id="light">
+				<script type="text/javascript">
+					var pos = document.documentElement;
+					pos.addEventListener('mousemove', e => {
+						pos.style.setProperty('--x', e.clientX + 'px');
+						pos.style.setProperty('--y', e.clientY + 'px');
+					})
+				</script>
+			</div>
+		</section>
+		
+		<script type="text/javascript">
+			var switchOn = false;
+			var bulbOn = false;
+
+			if(!bulbOn){
+				changeBulbColor('#000');
+			}
+
+			var toggle = document.getElementById('toggle');
+			var light = document.getElementById('light');
+
+			var quote = document.getElementsByClassName('quote__content');
+			var quoteHeader = document.getElementById('quote__header');
+
+			toggle.onclick = function(){
+				if(!switchOn){
+					quoteHeader.innerHTML = 'BeUMathematics sẽ giúp bạn';
+					quoteHeader.style.textShadow = '0 0 20px #23ffc9';
+					quote[0].innerHTML = 'Tìm lại cảm hứng trong môn Toán';
+					quote[1].innerHTML = 'Việc học toán sẽ dễ dàng hơn hết';
+					quote[2].innerHTML = 'Từ lý thuyết đến thực hành chưa bao giờ gần đến vậy';
+					quote[3].innerHTML = 'Thấu hiểu cặn kẽ vấn đề';
+					quote[4].innerHTML = 'Ví dụ trực quan, sinh động';
+					for(i=0; i<quote.length; i++){
+						quote[i].style.color = '#66FF00';
+					}
+					toggle.classList.add('on');
+					light.classList.add('off');
+				}else{
+					quoteHeader.innerHTML = 'Hãy để tôi giúp bạn!';
+					quote[0].innerHTML = 'Bạn không có cảm hứng với môn Toán?';
+					quote[1].innerHTML = 'Bạn cảm thấy môn Toán rất khó?';
+					quote[2].innerHTML = 'Bạn không hiểu giáo án của thầy/cô?';
+					quote[3].innerHTML = 'Bạn không thể áp dụng những gì đã học?';
+					quote[4].innerHTML = 'Bạn cảm thấy ngột ngạt với môn Toán?';
+					for(i=0; i<quote.length; i++){
+						quote[i].style.color = 'red';
+					}
+					toggle.classList.remove('on');
+					light.classList.remove('off');
+				}
+
+				switchOn = !switchOn;
+				bulbOn = !bulbOn;
+
+				if(bulbOn){
+					changeBulbColor('#FFF');
+					changeBackgroundColor('#1d2026');
+				}else{
+					changeBulbColor('#000');
+					changeBackgroundColor('#000');
+				}
+			}
+
+			function changeBulbColor(color){
+				document.documentElement.style.setProperty('--light-color', color);
+				
+			}
+			function changeBackgroundColor(color){
+				document.documentElement.style.setProperty('--background-color', color);
+			}
+		</script>
+	</body>
+</html>

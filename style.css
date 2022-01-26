@@ -1,0 +1,230 @@
+:root{
+	--background-color: #000;
+	--bulb-color: #5a5a5a;
+	--light-color: #fff;
+	--toggle-color: #828282;
+	--toggle-head-color: #dedede;
+}
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body{
+	width: 100%;
+	height: 100vh;
+}
+
+.container{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	z-index: 10;
+}
+
+.bulb__container{
+	width: 100%;
+	background: var(--background-color);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.settings{
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	padding-top: 15px;
+	background: transparent;
+	z-index: 100;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.settings h1{
+	top: 10px;
+	font-weight: 600;
+	font-size: 30px;
+	font-family: cursive;
+	color: #FFF;
+	text-align: center;
+	margin-bottom: 15px;
+}
+
+.settings h2{
+	font-weight: 600;
+	font-size: 20px;
+	font-family: cursive;
+	color: #FFF;
+	text-align: center;
+	margin-bottom: 15px;
+	cursor: default;
+}
+
+.settings h2:nth-child(1){
+	position: absolute;
+	top: 20vh;
+	left: 7vw;
+	color: red;
+}
+.settings h2:nth-child(2){
+	position: absolute;
+	top: 39vh;
+	left: 2vw;
+	color: red;
+}
+.settings h2:nth-child(3){
+	position: absolute;
+	top: 72vh;
+	color: red;
+}
+.settings h2:nth-child(4){
+	position: absolute;
+	top: 37vh;
+	right: 3vw;
+	color: red;
+}
+.settings h2:nth-child(5){
+	position: absolute;
+	top: 18vh;
+	right: 10vw;
+	color: red;
+}
+
+.bulb{
+	position: relative;
+	width: 80px;
+	height: 80px;
+	background: var(--bulb-color);
+	border-radius: 50%;
+	z-index: 10;
+}
+
+.bulb::before{
+	position: absolute;
+	content: '';
+	width: 35.2px;
+	height: 80px;
+	background: var(--bulb-color);
+	border-radius: 10px;
+	left: 28.1%;
+	top: -50px;
+	border-top: 30px solid #111;
+}
+
+.bulb::after{
+	position: absolute;
+	content: '';
+	width: 140px;
+	height: 140px;
+	background: var(--light-color);
+	border-radius: 50%;
+	top: 50%;
+	left: 0%;
+	filter: blur(40px);
+	transform: translate(-21.2%, -40%);
+	box-shadow: 0 0 100px var(--light-color),
+				0 0 200px var(--light-color),
+				0 0 500px var(--light-color),
+				0 0 1000px var(--light-color),
+				0 0 3000px var(--light-color);
+
+}
+
+.bulb span:nth-child(1){
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	background: transparent;
+	box-shadow: 20px 20px 0 10px ar(--bulb-color);
+	border-bottom-right-radius: 40px;
+	transform: rotate(342.2deg);
+	top: -16.5px;
+	left: -3.7px;
+}
+
+.bulb span:nth-child(2){
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	background: transparent;
+	box-shadow: -20px 20px 0 10px ar(--bulb-color);
+	border-bottom-left-radius: 40px;
+	transform: rotate(17.8deg);
+	top: -16.5px;
+	right: -3.5px;
+}
+
+.wire{
+	position: absolute;
+	width: 4px;
+	height: 50%;
+	top: 0%;
+	z-index: 2;
+	background: #111;
+}
+
+.toggle{
+	width: 40px;
+	height: 17px;
+	position: relative;
+	border-radius: 10px;
+	background: var(--toggle-color);
+	margin: 30px;
+}
+
+.toggle::after{
+	position: absolute;
+	content: '';
+	width: 17px;
+	height: 17px;
+	border-radius: 50%;
+	left: 0;
+	transition: 0.7s;
+	background: var(--toggle-head-color);
+}
+
+.toggle.on{
+	--toggle-color: #76343d;
+	--toggle-head-color: red;
+}
+
+.toggle.on::after{
+	left: 70% !important;
+}
+
+section{
+	position: relative;
+	min-height: 100vh;
+	background: var(--background-color);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1;
+}
+
+section h2{
+	color: #FFF;
+	font-size: 6em;
+	cursor: default;
+}
+
+.light{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	background: radial-gradient(circle at var(--x) var(--y), transparent 10%, rgba(0, 0, 0, 1) 10%);
+	z-index: 10;
+	/*background: transparent;*/
+}
+
+.light.off{
+	display: none;
+}
